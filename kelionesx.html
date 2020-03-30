@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ajax pavyzdys</title>
+	<script src="jquery-3.4.1.min.js"></script>
+	<!-- script src="https://code.jquery.com/jquery-1.12.4.js"></script -->
+	<script type="text/javascript">
+		$(document).ready( function() {
+		
+			$( '#siulyti' ).click ( function() {
+		
+				console.log( "ready!" );		
+				alert ( 'jquery ok' );
+			});
+			
+		
+			$.ajax( 'http://webtools.shared.town/nuotolinis/keliones/keliones.php',   // request url
+			    {
+				success: function (data, status, xhr ) {// success callback function
+				
+					keliones = JSON.parse ( data );
+					
+					str_lst_keliones = '<table>';
+					str_lst_keliones += '<tr><th>Pavadinimas</th><th>Kaina</th><th>Trukmė, val</th></tr>';					
+					
+					i = 0;
+					
+					while ( i < keliones.rows.length ) {
+					
+						str_lst_keliones += '<tr>';
+						str_lst_keliones += '<td>' + keliones.rows[ i ].pav + '</td>';
+						str_lst_keliones += '<td>' + keliones.rows[ i ].kaina + '</td>';
+						str_lst_keliones += '<td>' + keliones.rows[ i ].trukme_val + '</td>';						
+						str_lst_keliones += '<tr>';
+					
+						i++;
+					}
+					
+					str_lst_keliones += '</table>';
+					
+					$( '#lst_keliones' ).html ( str_lst_keliones );
+			    }
+			});
+		
+		});
+			
+	</script>
+</head>
+<body>
+	Kelionių sąrašas
+	<div id="lst_keliones">
+		
+	</div>
+	<input type="button" id="siulyti" value="pasiulyti">
+</body>
