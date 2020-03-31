@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8">
+	<title>
+		css pozicionavimas
+	</title>
+	<style>
+		div {
+			border: 1px solid black;
+			margin: 10px;
+			padding: 10px;
+		}
+		#kaire_juosta {
+			width: 30%;
+			float: left;
+		}
+		#vidurys {
+			width: 30%;
+			margin-left: 33%;
+		}
+		#desine_juosta {
+			width: 30%;
+			float: right;			
+		}		
+		#centravimui {
+		
+		}
+		#centrinis {
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+		#std_zin_plocio {
+		
+			width: 60%;
+		}
+		#absoliutus {
+		
+			position: absolute;
+			left: 200px;
+			top: 600px;
+			background-color: yellow;
+			opacity: 0.5;
+		}		
+		#fiksuotas {
+		
+			position: fixed;
+			left: 600px;
+			top: 600px;
+			background-color: green;
+			opacity: 0.5;			
+		}
+		#blokas_su_blokeliais {
+		
+			position: relative;
+			overflow: hidden;
+		}
+		.blokelis {
+		
+			display: inline-block;
+		}
+		#blokelis3, #blokelis4 {
+		
+			position: absolute;
+		}
+		#blokelis3 {
+
+			left: 200px;
+			top: 80px;
+		}
+		#blokelis4 {
+
+			left: 80px;
+			top: 120px;
+		}		
+		
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+		
+			// alert ( 'Hi' );
+
+			// jQuery methods go here...
+			// ct = 0;
+			rodom = false;
+			
+			$( '#parodyk' ).click ( function () {
+			
+				spalva = 'red';
+				pav_mygtuko = 'slėpk';				
+			
+				if ( rodom ) {
+				
+					spalva = 'white';
+					pav_mygtuko = 'rodyk';
+				
+				}
+		  
+				  $( '.blokelis' ).each ( function () {
+				  
+					// alert ( ct );
+					
+					$( this ).css ( 'background-color', spalva );
+				  
+				  });
+				  
+				  $( this ).val ( pav_mygtuko ); 
+				  
+				  rodom = ! rodom;
+				  
+			});
+			
+			$( '#parodykx' ).click ( function () {
+
+				  $( '.blokelis' ).each ( function () {
+					
+					if ( rodom ) {
+					
+						$( this ).hide ();
+						pav_mygtuko = 'rodykx';						
+					
+					} else {
+					
+						$( this ).show();
+						pav_mygtuko = 'slėpkx';							
+
+					}
+				  });
+				  
+				  $( this ).val ( pav_mygtuko ); 
+				  
+				  rodom = ! rodom;
+				  
+			});
+
+			$( '#judam' ).click ( function() {
+			
+				$( '#fiksuotas' ).animate ( { 'top': '50px' }, 3000  );
+			
+			});
+			
+			$( '#didek' ).click (  function() {
+			
+				$( '#fiksuotas' ).animate ( { 'width': '500px' }, 3000  );
+			});
+			$( '#atgal' ).click ( function() {
+			
+				$( '#fiksuotas' ).animate ( { 'top': '600px' }, 3000  );
+			
+			});
+			
+			$( '#mazek' ).click (  function() {
+			
+				$( '#fiksuotas' ).animate ( { 'width': '160px' }, 3000  );
+			});			
+		});
+	</script>
+</head>
+<body>
+	Tekstas prieš pirmą bloką
+	<div id="skrajute">
+		1. išdėstymas,  skrajute
+		<div id="desine_juosta">
+			juosta iš "dešinės"
+		</div>		
+		<div id="kaire_juosta">
+			juosta iš "kairės"
+		</div>
+		<div id="vidurys">
+			vidurys
+		</div>
+		
+	</div>
+	Tekstas po pirmo bloko.<br>
+	Tekstas prieš antrą bloką.
+	<div id="centravimui">
+		2. išdėstymas,  centruojant
+		<div id="centrinis">
+			centrinis blokas
+		</div>		
+	</div>
+	Tekstas po antro bloko.<br>
+	Tekstas prieš trečią bloką.	
+	<div id="absoliutus">
+		3 blokas su absoliutine pozicija
+	</div>
+	Tekstas po trečio bloko.<br>
+	Tekstas prieš 4a bloką.	
+	<div id="standartinis">
+		4a. standartinis
+	</div>
+	Tekstas po 4a bloko.<br>
+	Tekstas prieš 4b bloką.	
+	<div id="std_zin_plocio">
+		4b standartinis žinomo pločio
+	</div>
+	Tekstas po 4b bloko.<br>
+	Tekstas prieš penktą bloką su blokeliais.		
+	<div id="blokas_su_blokeliais">
+		5. blokas su blokeliais
+		<div class="blokelis">
+			blokelis 1
+		</div>
+		<div class="blokelis">
+			blokelis 2
+		</div>
+		<div id="blokelis3" class="blokelis">
+			blokelis 3
+		</div>
+		<div id="blokelis4" class="blokelis">
+			blokelis 4
+		</div>
+		<div class="blokelis">
+			blokelis 5
+		</div>
+		<div class="blokelis">
+			blokelis 6
+		</div>		
+	</div>
+	Tekstas po penkto bloko su blokeliais.<br>
+	Tekstas prieš fiksuotos pozicijos bloką.	
+	<div id="fiksuotas">
+		6. fiksuota pozicija
+	</div>
+	Pabaigoje prirašytas tekstas šiaip sau.<br>
+	<p>
+	Čia galima ir kartais naudinga aprašyti kokius, kad ir žinomus dalykus, kurie susiję svetainės tematika kaip šiuo atveju su css pozicionavimu.  Naršyklės indeksuodamos puslapius pagal raktinius žodžius peržiūri tekstą ir kuo dažniau tas tekstas kartojasi tuo didesnė raktinio žodžio vertė ir didesnis puslapio įvertinimas pagal tup žodžius.
+	</p>
+	<p>
+		Šiaip gale patalpinto teksto vis tiek niekas neskaito tai jaudintis dėl išvaizdos nera reikalo.
+	</p>
+	<input type="button" id="parodyk" value="rodyk">
+	<input type="button" id="parodykx" value="rodykx">	
+	<input type="button" id="judam" value="judek">
+	<input type="button" id="didek" value="didek">	
+	<input type="button" id="atgal" value="atgal">
+	<input type="button" id="mazek" value="mazek">		
+</body>
+</html>

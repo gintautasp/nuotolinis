@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Svečių knyga
+		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script>
+			$( document ).ready( function() {
+			
+				$( '#jungtis' ).hide();
+				
+				$( '#registruotis' ).click( function() {
+				
+					$( '#jungtis' ).show();
+				});
+				
+				$( '#sign' ).click ( function() {
+				
+					user_name = $( '#uname' ).val();
+					
+					if ( user_name.length < 3 ) { 
+					
+						alert ( 'nenurodytas arba per trumpas vartotojo vardas' );
+					}
+				});
+				
+				$( '#slaptazodis' ).keyup ( function() {
+				
+					passwd = $( '#slaptazodis' ).val();
+					
+					kiekis_raidz = 0;
+					kiekis_skaiciu = 0;
+					kiekis_kt = 0;
+					viso = passwd.length;
+					
+					raides = 'ABCDEFGHIJKLMNOPRSTUVXYZQabcdefghijklmnoprstuvxyzq';
+					skaiciai = '0123456789';
+					
+					 for ( i = 0; i < passwd.length; i++) {
+					
+					
+						 if  ( raides.indexOf ( passwd.substr ( i, 1 ) ) != -1 ) {
+						
+							kiekis_raidz++;
+							
+						 }  else {
+						
+							if ( skaiciai.indexOf ( passwd.substr ( i, 1 ) ) != -1 ) {
+							
+							
+								kiekis_skaiciu++;
+							
+							} else {
+							
+								kiekis_kt++;
+							}
+						}						
+					 }
+					stiprumas =   0.6 * ( ( kiekis_raidz * 1.0 ) / viso ) + 0.3* ( ( kiekis_skaiciu *1.0)  / viso ) + 0.1 * ( ( kiekis_kt * 1.0 ) / viso );
+					
+					$( '#slapt_stiprumas' ).html ( passwd + " raidžių: " + kiekis_raidz +  " skaičių: " + kiekis_skaiciu  + " kitų simb.: " + kiekis_kt + " stiprumas: " + stiprumas );
+				
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<input type="text" id="name" placeholder="vardas, pavardė ar slapyvardis"><br>
+		<label for="amzius">amžius</label><br>
+		<input type="range" id="amzius" min="3" max="140"><br><br>
+		<label for="ugis">ūgis</label><br>
+		<input type="number" id="ugis"><br><br>
+		<label for="svoris">svoris</label><br>
+		<input type="number" min="3" max="140"><br><br>
+		<label for="akiu_spalva">akių spalva</label><br>
+		<select id="akiu_spalva">
+			<option value="blue">mėlyna</option>
+			<option value="green">žalia</option>
+			<option value="grey">pilka</option>
+			<option value="brown">ruda</option>
+		</select><br><br>
+		<label for="akiu_spalva">mėgiami laisvalaikio tipai</label><br>
+		<select id="" multiple size="5">
+			<option value="sportas">sportas</option> 
+			<option value="sportas">skaitymas</option> 
+			<option value="sportas">kelionės</option>
+			<option value="sportas">bendravimas</option> 
+			<option value="sportas">hobis vienumoje</option> 
+		</select><br><br>
+		darbinėje veikloje Jums tenka<br>
+		<input id="keliauti" type="checkbox" value="1"> - keliauti<br>
+		<input id="bendrauti" type="checkbox" value="1"> - bendrauti<br>
+		<input id="mokyti" type="checkbox" value="1"> - mokyti<br>
+		<input id="analizuoti" type="checkbox" value="1"> - analizuoti<br>
+		<input id="kurti" type="checkbox" value="1"> - kurti<br><br>
+		<label for="ev_time">įsimintiniausio įvykio data</label><br>
+		<input type="date" id="ev_time"><br>
+		<label for="atsiliepimai">Jūsų atsiliepimai</label><br>
+		<textarea id="atsiliepimai">
+		</textarea><br><br>
+		<input id="registruotis" type="radio"> - noriu registruotis sistemoje<br><br>
+		<div id="jungtis">
+			<label for="uname">prisijungimo vardas</label>	<br>
+			<input type="text" id="uname"><br><br>
+			<label for="slaptazodis">slaptažodis</label><br>
+			<input id="slaptazodis" type="password"><br><br>
+			<div id="slapt_stiprumas"></div>
+		</div>
+		<input id="pildymo_trukme" type="hidden" value="0">
+		<input type="button" id="sign" value="pasirašyti">
+	</body>
+</html>

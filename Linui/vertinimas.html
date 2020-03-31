@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>
+		HTML, css, javascript vertininimas
+	</title>
+	<style>
+		table {
+			border-collapse: collapse;
+		}
+		th, td {
+			
+		}
+	</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script>
+	
+		$(document).ready(function(){
+		
+			balu_suma = 0;
+		
+			$( '.valof' ).each( function() {
+			
+				balu_suma += parseFloat ( $( this ).html() );
+			
+			}); 
+			$( '#totals_valof' ).html( balu_suma );			
+			
+			studs = [ 'alius', 'gabrielius', 'deividas' ];
+			balu_sumos = [ 0, 0, 0 ];
+			
+			for ( i= 0; i<studs.length; i++ ) {
+			
+				 $( '.' + studs [ i ] ).each( function() {
+				
+					balu_sumos [ i ] +=  parseFloat ( $( this ).html() );
+				
+				}); 
+				 $( '#totals_' + studs[ i ]  ).html( balu_sumos [ i  ] );	
+			} 
+		});
+	</script>
+</head>
+<body>
+	<h1>HTML, css, javascript vertininimas</h1>
+	<table>
+		<tr>
+			<th>kriterijus</th><th>vertė</th><th>Alius</th><th>Gabrielius</th><th>Deividas</th>
+		</tr>
+		<tr><th>1. h1</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">0.5</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>2. float/fixed/absolute</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">1</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>3. spalvos</th><th class="valof">1</th>
+			<td class="alius">0.5</td><td class="gabrielius">1</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>4. title</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">1</td><td class="deividas">0.7</td>
+		</tr>
+		<tr><th>5. html(tvark.)</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">1</td><td class="deividas">1</td>
+		</tr>
+		<tr><th>6. input</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">1</td><td class="deividas">1</td>
+		</tr>		
+		<tr><th>7. mygtukas</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">1</td><td class="deividas">1</td>
+		</tr>
+		<tr><th>8. funkcija</th><th class="valof">1</th>
+			<td class="alius">1</td><td class="gabrielius">1</td><td class="deividas">1</td>
+		</tr>
+		<tr><th>9. jquery</th><th class="valof">1</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0.5</td>
+		</tr>
+		<tr><th>10. funckcijos akt.</th><th class="valof">1</th>
+			<td class="alius">0.5</td><td class="gabrielius">0.5</td><td class="deividas">1</td>
+		</tr>
+		<tr><th>11. duomenų skaitymas</th><th>2</th>
+			<td class="alius">2</td><td class="gabrielius">2</td><td class="deividas">2</td>
+		</tr>
+		<tr><th>12. rezultatų sritis</th><th class="valof">1</th>
+			<td class="alius">0.7</td><td class="gabrielius">0</td><td class="deividas">1</td>
+		</tr>
+		<tr><th>13. suskaič. perimetras </th><th class="valof">2</th>
+			<td class="alius">2</td><td class="gabrielius">2</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>14. suskaič. plotas</th><th class="valof">3</th>
+			<td class="alius">3</td><td class="gabrielius">3</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>15. plotas rezultate</th><th class="valof">1</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>16. 3sk. alert &gt;</th><th class="valof">1.5</th>
+			<td class="alius">0.5</td><td class="gabrielius">0.5</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>17. 3sk. alert == </th><th class="valof">1.5</th>
+			<td class="alius">0.5</td><td class="gabrielius">0.5</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>18. 3sk. pranešimas, ok</th><th>1.5</th>
+			<td class="alius">0.2</td><td class="gabrielius">0.5</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>19. ciklas. pab.</th><th class="valof">1</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>20. ciklas. skaič per.</th><th class="valof">2</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>21. ciklas. skaič. pl.</th><th class="valof">3</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>22. ciklas. a rez.</th><th class="valof">1</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>23. ciklas. plotas rez.</th><th class="valof">1</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>24. ciklas. lent.antr.</th><th class="valof">1</th>
+			<td class="alius">0.5</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>25. ciklas. rez. lent.</th><th class="valof">1</th>
+			<td class="alius">0</td><td class="gabrielius">0</td><td class="deividas">0</td>
+		</tr>
+		<tr><th>viso</th><th id="totals_valof"></th>
+			<td id="totals_alius"></td><td id="totals_gabrielius"></td><td id="totals_deividas"></td>
+		</tr>		
+	</table>
+</body>
+</html>
