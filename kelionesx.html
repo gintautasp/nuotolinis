@@ -31,7 +31,7 @@
 						str_lst_keliones += '<tr>';
 						str_lst_keliones += '<td>' + keliones.rows[ i ].pav + '</td>';
 						str_lst_keliones += '<td>' + keliones.rows[ i ].kaina + '</td>';
-						str_lst_keliones += '<td>' + keliones.rows[ i ].trukme_val + '</td>';						
+						str_lst_keliones += '<td>' + keliones.rows[ i ].trukme_val + ' &check; </td>';						
 						str_lst_keliones += '<tr>';
 					
 						i++;
@@ -40,6 +40,8 @@
 					str_lst_keliones += '</table>';
 					
 					$( '#lst_keliones' ).html ( str_lst_keliones );
+					
+					// funkcijos vieta čia
 			    }
 			});
 		

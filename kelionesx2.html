@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Ajax pavyzdys</title>
+	<!-- script src="jquery-3.4.1.min.js"></script>-->
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(document).ready( function() {
+			var aprasymas;
+			$( '#siulyti' ).click ( function() {
+		
+				console.log( "ready!" );		
+				alert ( 'jquery ok' );
+			});
+			
+		
+			$.ajax( 'http://webtools.shared.town/nuotolinis/keliones/keliones.php',   // request url
+			    {
+				success: function (data, status, xhr ) {// success callback function
+				
+					keliones = JSON.parse ( data );
+					
+					str_lst_keliones = '<table id = "manoLentele">';
+					str_lst_keliones += '<tr><th>Pavadinimas</th><th>Kaina</th><th>Trukme_val</th><th>Poilsines</th><th>Pazintines</th><th>Viskas_isk</th></tr>';					
+					
+					i = 0;
+					
+					while ( i < keliones.rows.length ) {
+					
+						str_lst_keliones += '<tr>';
+						str_lst_keliones += '<td class="pav" data-apras="'+ keliones.rows[ i ].apras + '">' + keliones.rows[ i ].pav + '</td>';
+						str_lst_keliones += '<td>' + keliones.rows[ i ].kaina + '</td>';
+						str_lst_keliones += '<td>' + keliones.rows[ i ].trukme_val + '</td>';
+						if(keliones.rows[ i ].flag_poilsines == 1){
+							str_lst_keliones += '<td>' + '<div id ="poilsines">&check;</div>' + '</td>';
+						} else {
+							str_lst_keliones += '<td>' + '<div id="poilsines">&cross;</div>' + '</td>';
+						}
+						if(keliones.rows[ i ].flag_pazintines == 1){
+							str_lst_keliones += '<td>' + '<div id="pazintines">&check;</div>' + '</td>';
+						} else {
+							str_lst_keliones += '<td>' + '<div id="pazintines">&cross;</div>' + '</td>';
+						}
+						if(keliones.rows[ i ].flag_viskas_isk == 1){
+							str_lst_keliones += '<td>' + '<div id="viskas_isk">&check;</div>' + '</td>';
+						} else {
+							str_lst_keliones += '<td>' + '<div id="viskas_isk">&cross;</div>' + '</td>';
+						}
+
+						str_lst_keliones += '</tr>';
+					
+						i++;
+					}
+					
+					str_lst_keliones += '</table>';
+					$( '#lst_keliones' ).html ( str_lst_keliones );
+					
+					$( ".pav" ).each ( function() {
+						$( this ).on("click", function() {
+							aprasymas = $(this).data( "apras" );
+							alert(aprasymas);
+							$('#placiau').html (aprasymas);
+						});
+					});						
+			    }
+			});
+
+		});
+			
+	</script>
+</head>
+<body>
+	Kelioniu sarasas
+	<div id="lst_keliones">
+		  
+	</div>
+
+	<input type="button" id="siulyti" value="pasiulyti">
+	<div id="placiau">
+	Nesamone
+	</div>
+</body>
