@@ -1,0 +1,12 @@
+
+ SELECT sudarymo principai SQL (MySQL/MariaDB)
+ 
+ 1. išrenka duomenis iš vienos lentėlės
+ 2. galima prijungt su JOIN kitas lenteles ir rezultate bus viena didelė lentėlė
+	a) tai įraišai iš kurių lentelių gali susidubliuoti ar net daug
+ 3. galima išrinkti įrašus(eilutes) su WHERE
+ 4. galima sugrupuoti su GROUP BY - sujungti kelias (pagal vienodą stulpelio reikšmę) eilutes į vieną
+ 5. po SELECT nurodome kokius stulpelius arba suskaičiuotas reikšmes išrenkame
+	a) jei naudojam grupavimą, tai galim AGREGATE funkcijas MAX, MIN AVG, GROUP_CONCAT ir pan.
+ 6. rezultate galime vėl išrinkti įrašus(eilutes) su HAVING 
+ 
