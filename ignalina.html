@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<title>Ignalina</title>
+	<script>
+	
+		function jsApp ( id_res_html ) {
+		
+			this.data = {
+				
+				res_str: ''
+			}
+		
+			this.data.res = document.getElementById ( id_res_html );
+			
+			this.addToRes = function ( html_part ) {
+			
+				this.data.res_str += html_part;
+			}
+			
+			this.showRes = function() {
+			
+				this.data.res.innerHTML = this.data.res_str;
+			}
+			
+			this.clearRes = function() {
+			
+				this.data.res_str = '';
+				this.data.res.innerHTML = '';
+			}
+			
+			this.addVar = function ( name, value ) {
+			
+				this.data [ name ] = value;
+			}
+			
+			this.take = function ( name_var ) {
+			
+				return this.data [ name_var ];
+			}
+			 
+			this.getInputHtml = function ( id_input_html, name_var, type_var ) {
+			
+				val_input = document.getElementById( id_input_html ).value;
+				
+				switch ( type_var ) {
+				
+					case 'int':
+						this.data [ name_var ] = parseInt ( val_input );
+					break;
+					
+					case 'float':
+						this.data [ name_var ] = parseFloat ( val_input );
+					break;
+					
+					case 'array':
+						this.data [ name_var ] = val_input.split( ',' );
+					break;
+					
+					default:
+						this.data [ name_var ] = val_input;
+				}
+				return this.data [ name_var ];
+			}
+		}
+
+		function sauti() {
+		
+			skrydis_app = new jsApp ( 'skrydis' );
+			
+			v0 = skrydis_app.getInputHtml ( 'v0', 'v0', 'float' );
+			dt = skrydis_app.getInputHtml ( 'dt', 'dt', 'float' );
+			
+			v = v0;
+			
+			g = 10;
+			t = 0;
+			h = 0;
+			h_max = 0;
+			
+			t_apsk = Math.sqrt ( ( 2 * v0 ) / g );
+			
+			skrydis_app.addToRes ( 't apskaič.: ' + t_apsk + '<br>' );
+			
+			skrydis_app.addToRes ( '<table><tr><th>nr.</th><th>busena</th><th>t</th><th>v</th><th>h</th></tr>' );
+			
+			flag_kylam = true;
+			flag_pakibom = false;
+			flag_kabom = false;			
+			flag_krentam = false;
+			
+			ct = 0;
+			
+			do {
+			
+				ct++;
+				
+				busena = ( flag_kylam ? 'kylam' : ( flag_pakibom ? 'pakibom' : ( flag_kabom ? 'kabom' : 'krentam' ) ) ); 
+			
+				//if ( ! flag_pakibom ) {
+				
+				skrydis_app.addToRes ( '<tr><td>' + ct + '</td><td>' + busena + '</td><td>' + t.toFixed( 2 ) + '</td><td>' + v.toFixed(2) + '</td><td>' + h.toFixed(2)  + '</td><tr>' );
+				//}
+				
+				t = t + dt;
+				v = v0 - g * t;
+				
+				if ( v > 0 ) {
+				
+					h =  v0 * t - ( g * t * t ) / 2;
+					
+				} else {
+				
+					h_kritimo = v0 * t - ( g * t * t ) / 2;
+				
+					if ( flag_kabom ) {
+					
+						if ( ( h_kritimo / h_max ) < 0.97 ) {
+						
+							dt = skrydis_app.take ( 'dt' );
+							flag_kabom = false;
+							flag_krentam = true;
+						}
+					}
+				
+					if ( flag_pakibom ) {
+
+						h_max = h;
+						flag_pakibom = false;
+						flag_kabom = true;
+					}				
+				
+					if ( flag_kylam ) {
+					
+						t = t - dt;
+						dt = dt / 10;					
+						flag_pakibom = true;
+						flag_kylam = false;
+					}
+
+					h = h_kritimo;					
+				}
+				
+			} while ( ( h > 0 ) && ( ct < 500 ) );
+			
+			skrydis_app.addToRes ( '<tr><td>' + ct + '</td><td>' + busena + '</td><td>' + t.toFixed( 2 ) + '</td><td>' + v.toFixed(2) + '</td><td>' + h.toFixed(2)  + '</td><tr>' );
+			
+			skrydis_app.addToRes ( '</table>' );
+			skrydis_app.showRes();
+		
+		}
+	</script>
+</head>
+<body>
+	<fieldset>
+		<legend>Duomenys</legend>
+		<label for="v0">pradinis greitis, v0, metrais</label>
+		<input type="number" id="v0" value="20">		
+		<label for="dt">laiko žingsnis, dt, sekundemis</label>
+		<input type="number" id="dt" value="0.2">
+		<input type="button" onClick="sauti()" value="Startas">		
+	</fieldset>
+	<div id="skrydis">
+	</div>
+</body>
