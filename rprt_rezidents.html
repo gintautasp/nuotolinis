@@ -3,8 +3,10 @@
 <head>
 </head>
 <body>
+
 Gyventojai
 <div id="criteria">
+<form method="post" action="">
 <label for="salis">Šalis</label>
 <select name="salis" id="salis" value="xxx">
 	<option value="xxx">visos</option>
@@ -19,7 +21,7 @@ Gyventojai
 <input type="checkbox" name="pagal_gyv_mieste" id="pagal_gyv_mieste" value="1" checked>
 <label for="pagal_lyti">skirstyti pagal gyv. mieste</label><br>
 <input type="checkbox" name="sumuoti_pagal_salis" id="sumuoti_pagal_salis" value="1" checked>
-<label for="pagal_lyti">sumuoti pagal šalis</label><br>
+<label for="amziu_ribos">sumuoti pagal šalis</label><br>
 <select name="amziu_ribos" id="amziu_ribos" value="5">
 	<option value="xxx">be ribų</option>
 	<option value="5" selected>5m.</option>
@@ -28,7 +30,8 @@ Gyventojai
 	<option value="30">30m</option>
 	<option value="50">50m.</option>	
 </select><br>
-<input type="button" name="do_filter" id="do_filter" value="Atrinkti">
+<input type="submit" name="do_filter" id="do_filter" value="Atrinkti">
+</form>
 </div>
 <table>
 	<tr>
